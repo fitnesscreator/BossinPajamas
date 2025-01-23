@@ -625,25 +625,33 @@
 }
 
 
-    .mobile-message {
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
-  align-items: center;    /* Center align children */
-  justify-content: center;
-  position: fixed;
+    /* Hide the mobile-message by default */
+.mobile-message {
+  display: none;
+  position: fixed; /* Ensure it overlays all content */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, #e24157, #de1834);
-  z-index: 9999;
-  text-align: center;
+  z-index: 9999; /* High z-index to overlay other elements */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+  justify-content: center; /* Center children vertically */
+  text-align: center; /* Center text */
   padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  animation: fadeIn 0.5s ease;
   box-sizing: border-box;
 }
 
+/* Show the mobile-message only on devices with a width of 768px or less */
+@media only screen and (max-width: 768px) {
+  .mobile-message {
+    display: flex; /* Flex to center content */
+    flex-direction: column; /* Stack children vertically */
+  }
+}
+
+/* Styles for the mobile content */
 .mobile-content {
   max-width: 90%; /* Ensure the content fits within the screen */
   background: rgba(255, 255, 255, 0.95);
@@ -654,6 +662,7 @@
   box-sizing: border-box;
 }
 
+/* Mobile Logo Styling */
 .mobile-logo {
   font-family: 'Lobster', cursive;
   font-size: 2rem;
@@ -661,6 +670,14 @@
   margin-bottom: 1rem;
 }
 
+/* Mobile Emoji Styling */
+.mobile-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+}
+
+/* Mobile Message Text */
 .mobile-message p {
   font-size: 1rem;
   color: #444;
@@ -668,19 +685,23 @@
   margin: 0.5rem 0;
 }
 
-.mobile-emoji {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  animation: bounce 2s infinite;
+/* Decorative Image Styling */
+.mobile-image {
+  display: block;
+  max-width: 80%; /* Adjust width as needed */
+  margin: 20px auto 0; /* Center the image and add spacing */
+  border-radius: 10px; /* Optional: Rounded corners */
 }
 
+/* Bounce Animation for Emoji */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-10px); }
   60% { transform: translateY(-5px); }
 }
 
-@media (max-width: 768px) {
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 480px) {
   .mobile-content {
     padding: 15px;
   }
@@ -690,15 +711,9 @@
   .mobile-message p {
     font-size: 0.9rem;
   }
-}
-
-/* Add the styling for the image below */
-.mobile-image {
-  display: block;
-  max-width: 80%; /* Adjust width as needed */
-  margin: 0px auto 0; /* Center the image and add spacing */
-  border-radius: 10px; /* Optional: Rounded corners */
-  
+  .mobile-image {
+    max-width: 90%;
+  }
 }
 
 
@@ -712,7 +727,18 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <body>
   
-  
+  <!-- Mobile Message (Visible Only on Mobile Devices) -->
+  <div class="mobile-message">
+    <div class="mobile-content">
+      <div class="mobile-logo">Boss in Pajamas</div>
+      <div class="mobile-emoji">💻</div>
+      <p>Hi there!! 👋</p>
+      <p>My website isn’t designed for phone screens on purpose. Why? Because it’s packed with surprises and powerful features that work best on a computer.</p>
+      <p>Please switch to a computer to unlock all the tools you need to start building your dream business—right from the comfort of your pajamas!☺️</p>
+    </div>
+    <!-- Decorative Image (Visible Only on Mobile Devices) -->
+    <img src="https://i.ibb.co/0YPF24N/Bella-47.png" alt="Decorative Image" class="mobile-image">
+  </div>
 
 
   
@@ -1778,13 +1804,40 @@ document.addEventListener('click', (evt) => {
   document.head.appendChild(faviconLink);
 </script>
 
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pyh4snlwpe");
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Function to detect mobile devices using User-Agent
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    if (isMobileDevice()) {
+      // Display the mobile message
+      const mobileMessage = document.querySelector('.mobile-message');
+      if (mobileMessage) {
+        mobileMessage.style.display = 'flex'; // Ensure it's visible
+      }
+
+      // Optionally, hide the main content to prevent interaction
+      const mainContent = document.querySelector('.content-wrapper'); // Adjust selector as needed
+      if (mainContent) {
+        mainContent.style.display = 'none';
+      }
+
+      // Prevent certain actions or API calls if necessary
+      // Example: Override fetch to block API calls
+      window.fetch = function() {
+        return new Promise((resolve, reject) => {
+          reject(new Error('Mobile access blocked'));
+        });
+      };
+
+      // Optionally, display an alert or log the blocking
+      console.warn('Mobile access is blocked on this site.');
+    }
+  });
 </script>
+
 
 
 
