@@ -626,71 +626,82 @@
 
 
     .mobile-message {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #e24157, #de1834);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-    animation: fadeIn 0.5s ease;
-  }
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;    /* Center align children */
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #e24157, #de1834);
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.5s ease;
+  box-sizing: border-box;
+}
 
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+.mobile-content {
+  max-width: 90%; /* Ensure the content fits within the screen */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+}
 
+.mobile-logo {
+  font-family: 'Lobster', cursive;
+  font-size: 2rem;
+  color: #de1834;
+  margin-bottom: 1rem;
+}
+
+.mobile-message p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.mobile-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@media (max-width: 768px) {
   .mobile-content {
-    max-width: 500px;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 15px;
   }
-
   .mobile-logo {
-    font-family: 'Lobster', cursive;
-    font-size: 2.5rem;
-    color: #de1834;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
   }
-
   .mobile-message p {
-    font-size: 1.2rem;
-    color: #444;
-    line-height: 1.6;
-    margin: 1rem 0;
+    font-size: 0.9rem;
   }
+}
 
-  .mobile-emoji {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    animation: bounce 2s infinite;
-  }
+/* Add the styling for the image below */
+.mobile-image {
+  display: block;
+  max-width: 80%; /* Adjust width as needed */
+  margin: 0px auto 0; /* Center the image and add spacing */
+  border-radius: 10px; /* Optional: Rounded corners */
+  
+}
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-20px); }
-    60% { transform: translateY(-10px); }
-  }
 
-  @media (max-width: 1024px) {
-    .mobile-message {
-      display: flex;
-    }
-    
-    body > *:not(.mobile-message) {
-      display: none !important;
-    }
-  }
     
   </style>
 </head>
@@ -704,12 +715,17 @@
   <div class="mobile-message">
   <div class="mobile-content">
     <div class="mobile-logo">Boss in Pajamas</div>
-    <div class="mobile-emoji">🛌💻</div>
-    <p>Hey there pajama boss! 👋</p>
-    <p>Our creative dashboard works best on larger screens!</p>
-    <p>Please switch to a computer to enjoy all features and start building your dream business in comfy clothes 🎨</p>
+    <div class="mobile-emoji">💻</div>
+    <p>Hi there!! 👋</p>
+    <p>My website isn’t designed for phone screens on purpose. Why? Because it’s packed with surprises and powerful features that work best on a computer.</p>
+    <p>Please switch to a computer to unlock all the tools you need to start building your dream business—right from the comfort of your pajamas!☺️</p>
   </div>
+  <!-- Add the image directly here -->
+  <img src="https://i.ibb.co/0YPF24N/Bella-47.png" alt="Decorative Image" class="mobile-image">
 </div>
+
+
+
   
   <!-- Header -->
 <div class="header">
