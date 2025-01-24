@@ -624,100 +624,300 @@
       color: pink;
 }
 
-
-    /* Hide the mobile-message by default */
-.mobile-message {
-  display: none;
-  position: fixed; /* Ensure it overlays all content */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, #e24157, #de1834);
-  z-index: 9999; /* High z-index to overlay other elements */
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center children horizontally */
-  justify-content: center; /* Center children vertically */
-  text-align: center; /* Center text */
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-/* Show the mobile-message only on devices with a width of 768px or less */
-@media only screen and (max-width: 768px) {
-  .mobile-message {
-    display: flex; /* Flex to center content */
-    flex-direction: column; /* Stack children vertically */
+ /* Media Queries for Mobile Devices */
+@media only screen and (max-width: 600px) {
+  /* 1. Adjust the header layout */
+  .header {
+    position: fixed;                /* Keep the header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;                   /* Set a fixed height for the header */
+    display: flex;
+    justify-content: center;        /* Center the title horizontally */
+    align-items: center;            /* Center the title vertically within the header */
+    padding: 0 10px;                /* Horizontal padding */
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #e24157, #de1834); /* Maintain existing background */
+    z-index: 1000;                  /* Ensure it stays above other elements */
+    margin-bottom: 0px;
   }
-}
 
-/* Styles for the mobile content */
-.mobile-content {
-  max-width: 90%; /* Ensure the content fits within the screen */
-  background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  box-sizing: border-box;
-}
-
-/* Mobile Logo Styling */
-.mobile-logo {
-  font-family: 'Lobster', cursive;
-  font-size: 2rem;
-  color: #de1834;
-  margin-bottom: 1rem;
-}
-
-/* Mobile Emoji Styling */
-.mobile-emoji {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  animation: bounce 2s infinite;
-}
-
-/* Mobile Message Text */
-.mobile-message p {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.4;
-  margin: 0.5rem 0;
-}
-
-/* Decorative Image Styling */
-.mobile-image {
-  display: block;
-  max-width: 80%; /* Adjust width as needed */
-  margin: 20px auto 0; /* Center the image and add spacing */
-  border-radius: 10px; /* Optional: Rounded corners */
-}
-
-/* Bounce Animation for Emoji */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
-}
-
-/* Responsive Adjustments for Smaller Screens */
-@media (max-width: 480px) {
-  .mobile-content {
-    padding: 15px;
+  /* 2. Style the title */
+  .header .title {
+    font-size: 25px;                /* Adjust font size for better visibility */
+    text-align: center;             /* Center the text */
+    white-space: nowrap;            /* Prevent text from wrapping */
+    overflow: hidden;               /* Hide overflow text */
+    text-overflow: ellipsis;        /* Show ellipsis (...) for overflow text */
+    max-width: 80%;                 /* Ensure the title doesn't exceed 80% of the header's width */
   }
-  .mobile-logo {
-    font-size: 1.8rem;
+
+  /* 3. Position the contact button in the top right */
+  .header .contact-button {
+    position: absolute;             /* Position relative to the header */
+    top: 10px;                      /* Distance from the top of the header */
+    right: 10px;                    /* Distance from the right of the header */
+    padding: 6px 12px;              /* Adjust padding for smaller screens */
+    font-size: 10px;                /* Reduce font size for better fit */
+    white-space: nowrap;            /* Prevent button text from wrapping */
+    box-sizing: border-box;         /* Include padding and border in the element's total width and height */
   }
-  .mobile-message p {
-    font-size: 0.9rem;
-  }
-  .mobile-image {
-    max-width: 90%;
-  }
+
+  /* 4. Position the time inside the header bar */
+  .header .time {
+    position: absolute;             /* Position relative to the header */
+    top: 50%;                       /* Vertically center within the header */
+    left: 10px;                     /* Align to the left side of the header */
+    transform: translateY(-50%);    /* Adjust for true vertical centering */
+    font-size: 11px;                 /* Smaller font size for the time */
+    color: white;                   /* White color for the time */
+    max-width: 20%;                 /* Set a maximum width for the time */
+    white-space: normal;            /* Allow text to wrap onto multiple lines */
+    word-break: break-word;         /* Break long words if necessary */
+    box-sizing: border-box;         /* Include padding and border in the element's total width and height */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add a subtle shadow */
 }
 
 
-    
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.06) 40%, transparent 60%);
+    border-radius: 50%;
+  }
+
+  body {
+    overflow-x: hidden;                /* Prevent horizontal scrolling */
+    padding-top: 60px;                 /* Adjust padding for header height */
+    box-sizing: border-box;            /* Include padding and borders in the element's total width and height */
+  }
+  
+  .apps-section {
+    display: none;
+  }
+
+  /* Adjust intro-white-island bar for mobile */
+  .intro-white-island {
+    padding: 10px;                   /* Reduce padding for better spacing on mobile */
+    flex-direction: column;          /* Stack elements vertically */
+    align-items: flex-start;         /* Align items to the left */
+    text-align: center;              /* Align text to the left */
+    height: auto;                    /* Allow the container to adjust its height based on content */
+    max-width: 100%;                 /* Prevent the container from exceeding the viewport width */
+    margin: 10px auto 20px auto;     /* Center the container horizontally with vertical spacing */
+    box-sizing: border-box;          /* Include padding within the container's total width and height */
+}
+
+  .intro-white-island h2 {
+    font-size: 14px;                 /* Decrease font size for better readability */
+    margin-bottom: 20px;             /* Add spacing below the heading */
+    line-height: 1.3;                /* Improve text flow */
+    text-align: center; 
+    content: 'Please use your computer for better experience'; /* Replace text */
+    display: inline-block;           /* Ensure the content appears properly */
+  }
+  .button-container {
+    display: grid;                                      /* Use CSS Grid for layout */
+    grid-template-columns: repeat(2, max-content);      /* Define two columns with natural width */
+    grid-gap: 10px 0px;                                /* Set row and column gaps */
+    justify-content: flex-start;                        /* Align the grid items to the left */
+    width: 100%;                                        /* Ensure the container takes full width */
+    box-sizing: border-box;                             /* Include padding and borders within the total size */
+  }
+
+  .button-container button {
+    padding: 10px 20px;                /* Increase padding for better touch targets */
+    font-size: 16px;                   /* Adjust font size for readability */
+    box-sizing: border-box;            /* Include padding and border within the button's total size */
+    white-space: nowrap;               /* Prevent button text from wrapping */
+    display: flex;                     /* Use Flexbox for button content */
+    align-items: center;               /* Vertically center content */
+    justify-content: center;           /* Horizontally center content */
+  }
+
+  .button-container button i {
+    margin-left: 5px;                  /* Add spacing between icon and text */
+  }
+
+  .button-container button svg {
+    width: 16px;                       /* Resize SVG icons for better fit */
+    height: 16px;
+  }
+
+  .image-container {
+  column-count: 2;                  /* Number of columns */
+  column-gap: 10px;                 /* Gap between columns */
+  max-width: 100%;                  /* Ensure container fits within the viewport */
+  margin: 0 auto;                   /* Center container */
+  padding: 10px;                    /* Match padding with surroundings */
+  box-sizing: border-box;           /* Include padding in dimensions */
+  padding-bottom: 20px;             /* Add bottom padding for spacing */
+}
+
+.image-container::after {
+  content: '';                      /* Add a pseudo-element for spacing */
+  display: block;                   /* Ensure it affects layout */
+  height: 20px;                     /* Adjust height for spacing below the last image */
+}
+
+
+.image-item {
+  break-inside: avoid;              /* Prevent breaking inside columns */
+  margin-bottom: 10px;              /* Add spacing below each image */
+  width: 100%;                      /* Ensure images take full column width */
+  box-sizing: border-box;           /* Include padding and borders in the element's total width and height */
+}
+
+
+  .image-item img {
+    width: 100%;                      /* Ensure images scale to fit their container */
+    height: auto;                     /* Maintain aspect ratio */
+    display: block;                   /* Remove any inline spacing */
+    border-radius: 8px;               /* Maintain consistent styling */
+    transition: transform 0.3s ease;  /* Smooth scaling on hover */
+  }
+
+  .photo-section {
+    margin-left: 0;                   /* Remove left margin since the apps-section is hidden */
+    padding: 10px;                    /* Match padding with .intro-white-island and .image-container */
+    box-sizing: border-box;           /* Include padding in the element's total width and height */
+    max-width: 100%;                  /* Match width with .intro-white-island */
+}
+  
+  .manual-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark background for contrast */
+    z-index: 3000;
+    justify-content: center;
+    align-items: flex-start; /* Align modal content to the top */
+    overflow-y: auto; /* Enable scrolling for overflow content */
+    padding: 10px; /* Add padding for spacing */
+    box-sizing: border-box;
+  }
+
+  .manual-modal-content {
+    width: 100%; /* Full width for small screens */
+    max-width: 100%; /* Prevent content from exceeding screen width */
+    height: auto; /* Allow content to adjust height dynamically */
+    background: #fff;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    border-radius: 6px; /* Rounded corners */
+    overflow: hidden; /* Hide overflow for clean appearance */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .manual-modal-image-wrapper {
+    width: 100%; /* Full width for the image section */
+    max-height: 100%; /* Limit the image height to 50% of the viewport */
+    overflow: hidden; /* Prevent overflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+  }
+
+  .manual-modal-image-wrapper img {
+    width: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure image fits within the container */
+    height: auto; /* Allow height to adjust dynamically */
+    max-height: 100%; /* Ensure image doesn't exceed container height */
+    object-fit: contain; /* Scale the image appropriately */
+    display: block;
+  }
+
+  .manual-modal-info {
+    padding: 15px; /* Add padding for spacing */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align text to the left */
+    justify-content: flex-start;
+    overflow-y: auto; /* Allow scrolling if content exceeds available space */
+  }
+
+  .manual-modal-info h2 {
+    font-size: 18px; /* Adjust font size for smaller screens */
+    margin-bottom: 10px;
+    word-break: break-word; /* Ensure long words break into the next line */
+  }
+
+  #manualModalPrice {
+    font-size: 20px; /* Highlight the price */
+    color: #0f743b;
+    margin-bottom: 15px;
+  }
+
+  .manual-modal-info p {
+    font-size: 14px; /* Smaller font for better readability */
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #666;
+    word-break: break-word; /* Prevent text from overflowing */
+  }
+
+  .manual-modal-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add spacing between buttons */
+    width: 100%;
+  }
+
+  .manual-modal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #fff; /* High contrast for better visibility */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .manual-modal .close-btn:hover {
+    color: #ccc;
+  }
+
+  .manual-modal-actions button {
+    width: 100%; /* Full-width buttons */
+    padding: 10px; /* Add padding for touch targets */
+    font-size: 16px;
+    border-radius: 5px; /* Rounded buttons */
+    border: none;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .tutorial-btn {
+    background: #ffae00;
+    color: #fff;
+  }
+
+  .try-btn {
+    background: linear-gradient(180deg, #ff7969, #ff3597);
+    color: #fff;
+  }
+
+  .get-btn {
+    background: #55bc75;
+    color: #fff;
+  }
+  
+  
+}
+
+   
   </style>
 </head>
   <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
@@ -727,20 +927,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <body>
   
-  <!-- Mobile Message (Visible Only on Mobile Devices) -->
-  <div class="mobile-message">
-    <div class="mobile-content">
-      <div class="mobile-logo">Boss in Pajamas</div>
-      <div class="mobile-emoji">💻</div>
-      <p>Hi there!! 👋</p>
-      <p>My website isn’t designed for phone screens on purpose. Why? Because it’s packed with surprises and powerful features that work best on a computer.</p>
-      <p>Please switch to a computer to unlock all the tools you need to start building your dream business—right from the comfort of your pajamas!☺️</p>
-    </div>
-    <!-- Decorative Image (Visible Only on Mobile Devices) -->
-    <img src="https://i.ibb.co/0YPF24N/Bella-47.png" alt="Decorative Image" class="mobile-image">
-  </div>
-
-
   
   <!-- Header -->
 <div class="header">
@@ -949,22 +1135,22 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.innerWidth <= 600) {
+      const introHeading = document.querySelector('.intro-white-island h2');
+      if (introHeading) {
+        introHeading.textContent = 'Please use your computer for better experience';
+      }
+    }
+  });
+</script>
+
+
 
   <script>
     
-    // Add this at the very top of your existing script
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-if (isMobile || window.innerWidth < 1025) {
-  // Prevent all API calls
-  window.fetch = function() {
-    return new Promise((resolve, reject) => {
-      reject(new Error('Mobile devices blocked'));
-    });
-  };
-  
-  // Stop execution of other scripts
-  throw new Error('Mobile access blocked');
-}
+    
 // ==================================
 // IndexedDB + Favorites Code
 // ==================================
@@ -1802,40 +1988,6 @@ document.addEventListener('click', (evt) => {
   
   // Add to document head
   document.head.appendChild(faviconLink);
-</script>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Function to detect mobile devices using User-Agent
-    function isMobileDevice() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-
-    if (isMobileDevice()) {
-      // Display the mobile message
-      const mobileMessage = document.querySelector('.mobile-message');
-      if (mobileMessage) {
-        mobileMessage.style.display = 'flex'; // Ensure it's visible
-      }
-
-      // Optionally, hide the main content to prevent interaction
-      const mainContent = document.querySelector('.content-wrapper'); // Adjust selector as needed
-      if (mainContent) {
-        mainContent.style.display = 'none';
-      }
-
-      // Prevent certain actions or API calls if necessary
-      // Example: Override fetch to block API calls
-      window.fetch = function() {
-        return new Promise((resolve, reject) => {
-          reject(new Error('Mobile access blocked'));
-        });
-      };
-
-      // Optionally, display an alert or log the blocking
-      console.warn('Mobile access is blocked on this site.');
-    }
-  });
 </script>
 
 
